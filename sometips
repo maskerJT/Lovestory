@@ -1,0 +1,13 @@
+python自带的GUI库tkinter居然只能读取GIF格式的图片，需要引用第三方库pillow
+错误示例：
+canvas = tk.Canvas(window, width=250, bg='green')
+image_file = tk.PhotoImage(file='2.gif')
+image = canvas.create_image(150, 0, anchor='n', image=image_file)
+canvas.pack(side='top')
+改为：
+from PIL import Image, ImageTk
+……
+img_file = Image.open('jt.jpg')
+img_dis = ImageTk.PhotoImage(img_file)
+label_img = tkinter.Label(root, image=img_dis)
+label_img.pack()
