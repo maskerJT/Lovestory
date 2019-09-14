@@ -1,0 +1,4 @@
+Python time strptime() 函数根据指定的格式把一个【时间字符串】解析为【时间元组】
+datetime.now() # 获取当前datetime
+datetime(2017, 5, 23, 12, 20) # 用指定日期时间创建datetime
+网址：https://www.cnblogs.com/pywjh/p/9526094.html
