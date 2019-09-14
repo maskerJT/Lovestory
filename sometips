@@ -11,3 +11,6 @@ img_file = Image.open('jt.jpg')
 img_dis = ImageTk.PhotoImage(img_file)
 label_img = tkinter.Label(root, image=img_dis)
 label_img.pack()
+*********
+anchor属性的值和意义
+东南西北中
