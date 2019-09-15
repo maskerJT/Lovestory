@@ -10,3 +10,5 @@ today = datetime.now()
 final = today-date1
 print(final.days)
 print(str(final)[:-7])
+
+window.resizable(0,0) #阻止Python GUI的大小调整
