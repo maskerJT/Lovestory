@@ -64,3 +64,62 @@ b = tk.Button(window, text='刷新',fg='purple', font='楷体 12', width=6, heig
 b.pack()
 window.mainloop()
 
+
+#######version two
+from datetime import datetime
+import tkinter as tk
+import tkinter.messagebox
+
+window = tk.Tk()
+window.title('LoveDays')
+window.geometry('400x250')
+words = tk.Label(window, text='\n\n欢迎您来到我们的恋爱计时器啦！\n\n亲爱的宝贝\n\n'
+                              '我们在一起的时间是\n', fg='LightSeaGreen', font='楷体', height=7)
+words.pack(side='top')
+date1 = datetime(2019, 3, 7, 0, 35, 0)
+days = tk.Label(window, text=(str((datetime.now()-date1).days)+'  days'), fg='Coral', font="Times 24 bold", height=1)
+days.pack(side='top')
+var = tk.StringVar()  # 字符类型，用var来接收hit_me函数的传出内容用以显示在标签上
+l = tk.Label(window, textvariable=var,  fg='Coral', font='楷体 12', height=2)
+l.pack(side='top')
+
+def hit_me():
+    final = datetime.now() - date1
+    h = final.seconds // 3600
+    m = (final.seconds - h * 3600) // 60
+    s = final.seconds - h * 3600 - m * 60
+    clock=str(h).zfill(2)+'时'+str(m).zfill(2)+'分'+str(s).zfill(2)+'秒'
+    var.set(clock)
+
+
+def future():
+    tkinter.messagebox.showinfo(title='Future', message='  数字变成某个2xxx的时候，我一定要想办法娶你 ')
+
+def promise():
+    tkinter.messagebox.showinfo(title='Promise', message='我会努力做到我能做的事情\n'
+                                                         '      向未来全力以赴！')
+def hello():
+    tkinter.messagebox.showinfo(title='Hello', message='你好，我最爱的女孩~')
+def wish():
+    tkinter.messagebox.showinfo(title='Wish', message='希望以后能一起散步，游泳，吃饭，看长长的电影……')
+def copyrights():
+    tkinter.messagebox.showinfo(title='说明', message='    这是江滔写给廖晨的,\n让它长久地见证这份爱吧！')
+
+
+menubar = tk.Menu(window)                           # create a menu
+File = tk.Menu(menubar, tearoff=0)                     # menu name is file, its content is sth. no tearoff
+menubar.add_cascade(label='Instructions', menu=File)
+File.add_command(label='copyright', command=copyrights)
+submenu = tk.Menu(File)  # 和上面定义菜单一样，不过此处实在File上创建一个空的菜单
+File.add_cascade(label='Import', menu=submenu)  # 给放入的菜单submenu命名为Import
+submenu.add_command(label='hello', command=hello)
+submenu.add_command(label='promise', command=promise)
+submenu.add_command(label='wish', command=wish)
+submenu.add_command(label='future', command=future)
+
+window.config(menu=menubar)
+
+b = tk.Button(window, text='刷新',fg='LightSeaGreen', font='楷体 12', width=6, height=1, command=hit_me)
+b.pack()
+window.mainloop()
+
