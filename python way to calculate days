@@ -12,3 +12,6 @@ print(final.days)
 print(str(final)[:-7])
 
 window.resizable(0,0) #阻止Python GUI的大小调整
+
+#python中的函数与颜色完全教程
+https://www.cnblogs.com/aland-1415/p/6849193.html
