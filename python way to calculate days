@@ -1,4 +1,4 @@
-Python time strptime() 函数根据指定的格式把一个【时间字符串】解析为【时间元组】
+'''Python time strptime() 函数根据指定的格式把一个【时间字符串】解析为【时间元组】
 datetime.now() # 获取当前datetime
 datetime(2017, 5, 23, 12, 20) # 用指定日期时间创建datetime
 网址：https://www.cnblogs.com/pywjh/p/9526094.html
@@ -14,4 +14,53 @@ print(str(final)[:-7])
 window.resizable(0,0) #阻止Python GUI的大小调整
 
 #python中的函数与颜色完全教程
-https://www.cnblogs.com/aland-1415/p/6849193.html
+https://www.cnblogs.com/aland-1415/p/6849193.html'''
+
+################version one
+from datetime import datetime
+import tkinter as tk
+
+window = tk.Tk()
+window.title('LoveDays')
+window.geometry('400x250')
+#window.resizable(0,0)
+
+'''canvas = tk.Canvas(window, width=400, height=56)
+image_file1 = tk.PhotoImage(file='pic.gif')
+image1 = canvas.create_image(200, 30, anchor='center', image=image_file1)
+canvas.pack(side='bottom')'''
+
+words = tk.Label(window, text='\n\n欢迎您来到我们的恋爱计时器啦！\n\n亲爱的宝贝\n\n'
+                              '我们在一起的时间是\n', fg='DeepPink', font='楷体', height=7)
+words.pack(side='top')
+date1 = datetime(2019, 3, 7, 0, 35, 0)
+days = tk.Label(window, text=(datetime.now()-date1).days, fg='tomato', font="Times 24 bold", height=1)
+days.pack(side='top')
+
+'''var = tk.StringVar()
+l = tk.Label(window, textvariable=var, bg='green', fg='white', font='楷体 14', width=30, height=2)
+final = datetime.now() - date1
+s = str(final)
+var.set(s[10:11].zfill(2) + '时' + s[13:14].zfill(2) + '分' + s[17:18].zfill(2) + '秒')
+l.pack()
+'''
+
+var = tk.StringVar()  # 字符类型，用var来接收hit_me函数的传出内容用以显示在标签上
+l = tk.Label(window, textvariable=var,  fg='OrangeRed', font='楷体 12', height=2)
+l.pack(side='top')
+
+
+def hit_me():
+    final = datetime.now() - date1
+    h = final.seconds // 3600
+    m = (final.seconds - h * 3600) // 60
+    s = final.seconds - h * 3600 - m * 60
+    clock=str(h).zfill(2)+'时'+str(m).zfill(2)+'分'+str(s).zfill(2)+'秒'
+    var.set(clock)
+    print(final)
+    print(clock)
+
+b = tk.Button(window, text='刷新',fg='purple', font='楷体 12', width=6, height=1, command=hit_me)
+b.pack()
+window.mainloop()
+
